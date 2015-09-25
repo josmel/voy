@@ -1,0 +1,30 @@
+
+<h3 class="admin-title"><?php echo $this->element->getView()->titulo ?></h3>
+<div class="alert alert-info"><span style="color:red;"><?php $this->getMesseger(); ?></span>
+</div>
+<div class="ctn-back">
+    <a title="Volver al listado de Accesos" href="/admin/acl">« Volver al listado de Accesos</a>
+</div>
+<div class="frm-panel">
+    <form id="frm-article" action="<?php echo $this->element->getView()->action ?>" 
+          method="post" Enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="urlacl">Control de Acceso:</label>
+            <div class="controls">
+                <?php echo $this->element->urlacl; ?>
+                <?php echo $this->element->idacl; ?> 
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="state">estado:</label>
+            <div class="controls">
+                <?php echo $this->element->state; ?>
+            </div>
+        </div>
+        <div class="control-group last">
+            <div class="control">
+                <button class="btn-admin" type="submit">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,35 @@
+<h3 class="admin-title"><?php echo $this->element->getView()->titulo ?></h3>
+<?php $this->getMesseger(); ?>
+<div class="ctn-back">
+    <a title="Volver al listado de Roles" href="/admin/role">« Volver al listado de Roles</a>
+</div>
+<div class="frm-panel">
+    <form id="frm-article" action="<?php echo $this->element->getView()->action ?>" 
+          method="post" Enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="name">Nombre:</label>
+            <div class="controls">
+                <?php echo $this->element->idrol; ?>
+                 <?php echo $this->element->name; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="idacl">Accesos:</label>
+            <div class="controls">
+                <?php echo $this->element->idacl; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="state">Estado:</label>
+            <div class="controls">
+                <?php echo $this->element->state; ?>
+            </div>
+        </div>
+
+        <div class="control-group last">
+            <div class="control">
+                <button class="btn-admin" type="submit"><?php echo $this->element->getView()->submit ?></button>
+            </div>
+        </div>
+    </form>
+</div>

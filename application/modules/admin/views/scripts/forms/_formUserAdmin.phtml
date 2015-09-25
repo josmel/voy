@@ -1,0 +1,77 @@
+
+<h3 class="admin-title"><?php echo $this->element->getView()->titulo ?></h3>
+<div class="alert alert-info"><span style="color:red;"><?php $this->getMesseger(); ?></span>
+                    </div>
+<div class="ctn-back">
+    <a title="Volver al listado de Usuarios" href="/admin/usuarios">« Volver al listado de Usuarios</a>
+</div>
+<div class="frm-panel">
+    <form id="frm-article" action="<?php echo $this->element->getView()->action ?>" 
+          method="post" Enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="idrol">Rol:</label>
+            <div class="controls">
+                <?php echo $this->element->idrol; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="login">Usuario:</label>
+            <div class="controls">
+                <?php echo $this->element->login; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="name">Nombre:</label>
+            <div class="controls">
+                <?php echo $this->element->name; ?>
+                <?php echo $this->element->iduser; ?> 
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="apepat">Apellido Paterno:</label>
+            <div class="controls">
+                <?php echo $this->element->apepat; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="apemat">Apellido Materno:</label>
+            <div class="controls">
+                <?php echo $this->element->apemat; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="email">Correo:</label>
+            <div class="controls">
+                <?php echo $this->element->email; ?>
+            </div>
+        </div>
+        
+        <?php if(empty($this->element->getView()->id)) { ?>
+                <div class="control-group">
+                    <label class="control-label" for="confirmone">Contraseña:</label>
+                    <div class="controls">
+                        <?php echo $this->element->confirmone; ?>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="confirmtwo">Repita la Contraseña:</label>
+                    <div class="controls">
+                        <?php echo $this->element->confirmtwo; ?>
+                    </div>
+                     
+                </div>
+        <?php } ?>
+        
+        <div class="control-group">
+            <label class="control-label" for="state">estado:</label>
+            <div class="controls">
+                <?php echo $this->element->state; ?>
+            </div>
+        </div>
+        <div class="control-group last">
+            <div class="control">
+                <button class="btn-admin" type="submit">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>

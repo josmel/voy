@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Nuevo contrato de <?= $this->mailData['plan']; ?></title>
+    </head>
+    <body>
+    <u>Nuevo cliente de <?= $this->mailData['plan']; ?>:</u> 
+    <br>&nbsp;
+    <div> Plan : <?= $this->mailData['plan']; ?> </div>
+    <div> Tipo : <?= $this->mailData['tipo']; ?> </div>
+    <div> Estado : <?php echo $this->mailData['estado']; ?> </div>
+    <div> Nombre : <?php echo $this->mailData['nombre']; ?> </div>
+    <div> Apellido : <?php echo $this->mailData['apellido']; ?> </div>
+    <div> Documento : <?php echo $this->mailData['documento']; ?> </div>
+    <div> Direcci&oacute;n : <?php echo $this->mailData['direccion']; ?> </div>
+    <div> Distrito : <?php echo $this->mailData['distrito']; ?> </div>
+    <div> Fijo : <?php echo $this->mailData['fijo']; ?> </div>
+    <div> M&oacute;vil : <?php echo $this->mailData['celular']; ?> </div>
+    <div> Correo : <?php echo $this->mailData['correo']; ?> </div>
+</body>
+</html>

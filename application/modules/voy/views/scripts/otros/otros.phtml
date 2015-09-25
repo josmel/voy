@@ -1,0 +1,104 @@
+<!-- Section 5 -->
+<section id="section6" class="pricing">
+    <div class="container">
+        <div class="row flat">
+            <!-- Title row -->
+            <div class="row">
+                <div class="col-md-12 big-title  ">
+                    <h2>Otros distritos</h2>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 sub-title text-center  ">
+                    <h3>Si nuestra cobertura aún no alcanza tu dirección regístrate aquí y te avisaremos cuando podamos brindarte el servicio. Elegiremos los distritos que tendrán fibra óptica según la cantidad de solicitudes recibidas. </h3>
+                </div>
+            </div>
+            <!-- /Title row -->
+              <?php $this->getMesseger();?>
+            <!-- Contact form -->
+            <div class="contact-form">
+                <div class="container">
+                    <!-- Form element row -->
+                    <div class="row text-center">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <form action="/otros" method="post" name="reservar" >
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="name" name="nombre" type="text" placeholder="Nombres" value="" required><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="lastname" name="apellido" type="text" placeholder="Apellidos" value="" required><br>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="document" name="documento" type="text" placeholder="DNI o CE" value="" required><br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="address" name="direccion" type="text" placeholder="Dirección" value="" required><br>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="fixed" name="fijo" type="text" placeholder="Número fijo" value="" required><br>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="mobile" name="celular" type="text" placeholder="Número móvil" value="" required><br>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input class="form-control" type="email" id="email" name="correo" placeholder="Email" value="" required><br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12 ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    Al hacer clic en el botón "Registrar" aceptas que nos comuniquemos contigo para brindarte información de cobertura, planes y servicios de Voy - Moche Inversiones S.A. <br>&nbsp;</div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <button type="submit" class="btn btn-2 btn-2c">Registrar</button>
+                                            <!--<div class="success alert-success alert" style="display:none">Su registro fue realizado con &eacute;xito.</div>-->
+                                            <div class="error alert-danger alert" style="display:none">Debe completar todos los datos y su cuenta de E-mail debe ser v&aacute;lida.</div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <div class="col-md-2"></div>
+                    </div>
+                    <!-- /Form element row -->
+                </div>
+            </div>
+            <!-- /Contact form -->
+
+        </div>
+    </div>
+</section>

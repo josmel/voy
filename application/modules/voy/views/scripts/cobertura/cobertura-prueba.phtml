@@ -1,0 +1,347 @@
+
+<script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry,places"></script>
+<script src="http://web-apprentice-demo.craic.com/javascripts/GeoJSON.js"></script>
+<script>
+    var map, layer, overlays = [];
+    var myStyle = {
+        strokeColor: "red",
+        strokeOpacity: 1,
+        strokeWeight: 2,
+        fillColor: "#AAAAAA",
+        fillOpacity: 0.5
+    };
+    currentFeature_or_Features = null;
+    var datos = $.ajax({
+        url: 'http://local.voy/voy.pe/kml/EdificiosVestidos.json',
+        type: 'post',
+        dataType: 'json',
+        async: false
+    }).responseText;
+    datos = JSON.parse(datos);
+    var geojson_FeatureCollection = datos;
+    var addressStyle = {
+        icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 5, //tamaño
+            strokeColor: 'black', //color del borde
+            strokeWeight: 1, //grosor del borde
+            fillColor: '#65B9E1', //color de relleno
+            fillOpacity: 1// opacidad del relleno
+        }
+    };
+
+
+    function CenterControl(controlDiv, map) {
+
+        // Set CSS for the control border
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click para centrar el mapa';
+        controlDiv.appendChild(controlUI);
+        // Set CSS for the control interior
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Centrar mapa';
+        controlUI.appendChild(controlText);
+        // Setup the click event listeners: simply set the map to
+        // Chicago
+        google.maps.event.addDomListener(controlUI, 'click', function () {
+            map.setCenter(new google.maps.LatLng(<?php echo $this->address_x; ?>, <?php echo $this->address_y; ?>))
+        });
+    }
+    var infowindow = new google.maps.InfoWindow();
+    function initialize()
+    {
+        // Set up Address Autocomplete
+//                var input = $("#address")[0];
+        // Set up Google Map
+        var input = /** @type {HTMLInputElement} */(document.getElementById('address'));
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        map = new google.maps.Map($("#map")[0], {
+            zoom: 14,
+            center: new google.maps.LatLng(<?php echo $this->address_x; ?>, <?php echo $this->address_y; ?>),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            disableDefaultUI: true,
+            zoomControl: true
+        });
+        var contentString = '<div id="content">' +
+                '<div id="siteNotice">' +
+                '</div>' +
+                '<div id="bodyContent">' +
+                '<p><b><?php echo $this->got_this_address; ?></b></p>' +
+<?php
+if ($this->estado) {
+    switch ($this->area) {
+        case 95:
+            ?>
+                    '<a href="contratar">Tiene Cobertura</a> ' +
+            <?php
+            break;
+        default:
+            ?>
+                    '<a href="contratar">Tiene Posible Cobetura</a> ' +
+            <?php
+            break;
+    }
+} else {
+    ?>
+            '<a>Lo sentimos aun no tenemos cobertura</a> ' +
+<?php } ?>
+        '</div>' +
+                '</div>';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(<?php echo $this->address_x; ?>, <?php echo $this->address_y; ?>),
+            map: map,
+            title: "<?php echo $this->got_this_address; ?>",
+            animation: google.maps.Animation.DROP
+                    //                            iconName: 'small_red'
+        });
+//                google.maps.event.addListener(marker, 'click', function () {
+        infowindow.open(map, marker);
+//                });
+
+
+        google.maps.event.addListener(marker, 'click', toggleBounce);
+
+        // Set up polygons
+<?php
+if (!empty($this->polygons)) {
+    foreach ($this->polygons as $key => $polygon) {
+        ?>
+                var poly<?php echo $key; ?>, box<?php echo $key; ?>;
+                box<?php echo $key; ?> = [
+        <?php
+        foreach ($polygon as $polygon_key => $co) {
+            if ($polygon_key != 0) {
+                echo ", ";
+            }
+            ?>
+                        new google.maps.LatLng(<?php echo $co[0]; ?>, <?php echo $co[1]; ?>)
+            <?php
+        }
+        ?>
+                ];
+                poly<?php echo $key; ?> = new google.maps.Polygon({
+
+                paths: box<?php echo $key; ?>,
+        <?php if ($key == 'cobertura') { ?>
+                    strokeColor: "#0000FF",
+                            fillColor: "#0000FF",
+        <?php } else { ?>
+                    strokeColor: "#FADF02",
+                            fillColor: "#FADF02",
+        <?php } ?>
+                strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillOpacity: 0.4
+                });
+                        poly<?php echo $key; ?>.setMap(map);
+                google.maps.event.addListener(poly<?php echo $key; ?>, 'click', function (event) {
+                    var contentString = '<b>Zona  <?php echo $key; ?></b><br>';
+                    infoWindow.setContent(contentString);
+                    infoWindow.setPosition(event.latLng);
+                    infoWindow.open(map);
+                });
+
+        <?php
+    }
+}
+?>
+        infoWindow = new google.maps.InfoWindow();
+        var centerControlDiv = document.createElement('div');
+        var centerControl = new CenterControl(centerControlDiv, map);
+        centerControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
+        var panoramaOptions = {
+            position: new google.maps.LatLng(<?php echo $this->address_x; ?>, <?php echo $this->address_y; ?>),
+            pov: {
+                heading: 34,
+                pitch: 10
+            }
+        };
+        var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+        map.setStreetView(panorama);
+
+        showFeature(geojson_FeatureCollection, addressStyle);
+
+    }
+    function toggleBounce() {
+
+        if (marker.getAnimation() != null) {
+            marker.setAnimation(null);
+        } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }
+    function clearMap() {
+        if (!currentFeature_or_Features)
+            return;
+        if (currentFeature_or_Features.length) {
+            for (var i = 0; i < currentFeature_or_Features.length; i++) {
+                if (currentFeature_or_Features[i].length) {
+                    for (var j = 0; j < currentFeature_or_Features[i].length; j++) {
+                        currentFeature_or_Features[i][j].setMap(null);
+                    }
+                }
+                else {
+                    currentFeature_or_Features[i].setMap(null);
+                }
+            }
+        } else {
+            currentFeature_or_Features.setMap(null);
+        }
+        if (infowindow.getMap()) {
+            infowindow.close();
+        }
+    }
+    function showFeature(geojson, style) {
+        clearMap();
+        currentFeature_or_Features = new GeoJSON(geojson, style || null);
+        if (currentFeature_or_Features.type && currentFeature_or_Features.type == "Error") {
+            document.getElementById("put_geojson_string_here").value = currentFeature_or_Features.message;
+            return;
+        }
+        if (currentFeature_or_Features.length) {
+            for (var i = 0; i < currentFeature_or_Features.length; i++) {
+                if (currentFeature_or_Features[i].length) {
+                    for (var j = 0; j < currentFeature_or_Features[i].length; j++) {
+                        currentFeature_or_Features[i][j].setMap(map);
+                        if (currentFeature_or_Features[i][j].geojsonProperties) {
+                            setInfoWindow(currentFeature_or_Features[i][j]);
+                        }
+                    }
+                }
+                else {
+                    currentFeature_or_Features[i].setMap(map);
+                }
+                if (currentFeature_or_Features[i].geojsonProperties) {
+                    setInfoWindow(currentFeature_or_Features[i]);
+                }
+            }
+        } else {
+            currentFeature_or_Features.setMap(map)
+            if (currentFeature_or_Features.geojsonProperties) {
+                setInfoWindow(currentFeature_or_Features);
+            }
+        }
+
+        document.getElementById("put_geojson_string_here").value = JSON.stringify(geojson);
+    }
+
+    function setInfoWindow(feature) {
+        google.maps.event.addListener(feature, "click", function (event) {
+            var content = "<div id='infoBox'><strong>Edificios Vestidos</strong><br />";
+            for (var j in this.geojsonProperties) {
+                if (j == 'valor') {
+                    if (this.geojsonProperties[j] == 1) {
+                        content += j + ": CON COBERTURA<br />";
+                    } else {
+                        content += j + ": " + this.geojsonProperties[j] + "<br />";
+                    }
+                } else {
+                    content += j + ": " + this.geojsonProperties[j] + "<br />";
+                }
+            }
+            content += "</div>";
+            infowindow.setContent(content);
+            infowindow.setPosition(event.latLng);
+            infowindow.open(map);
+        });
+    }
+
+    google.maps.event.addDomListener(window, "load", initialize);
+
+</script>
+
+<div id="panel">
+    <form method="post">
+        <input  class="controls" type="text" id="address" name="address" value="<?php echo $this->got_this_address; ?>" style="width:50%;"/>
+        <input type="submit" value="Buscar" />
+    </form>
+    <!--<strong><?php echo $this->result; ?></strong>-->
+
+    <button style="display:none;" id="delete-button"></button>
+</div>
+<div id="map" style="width: 70%; height: 75%;float:left"></div>
+<div id="pano" style="width: 30%; height: 75%;float:left"></div>
+<br /><br />
+<style>
+    #map {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 80%;
+    }
+    .controls {
+        background-color: #fff;
+        border-radius: 2px;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        height: 32px;
+        margin-left: 17px;
+        margin-top: 16px;
+        outline: none;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+    }
+
+    .controls:focus {
+        border-color: #4d90fe;
+    }
+
+    #panel {
+        width: 65%;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        margin: 10px;
+    }
+    .controls:focus {
+        border-color: #4d90fe;
+    }
+    .btn-warning {
+        background-color:#F0AD4E;
+        border-color:#EEA236;
+        color:#FFFFFF;
+    }
+    .btn-info {
+        background-color:#5BC0DE;
+        border-color:#EEA236;
+        color:#FFFFFF;
+    }
+    .btn {
+        -webkit-user-select:none;
+        background-image:none;
+        border:1px solid transparent;
+        border-radius:4px;
+        cursor:pointer;
+        display:inline-block;
+        font-size:14px;
+        font-weight:400;
+        line-height:1.42857143;
+        margin-bottom:0;
+        padding:6px 12px;
+        text-align:center;
+        vertical-align:middle;
+        white-space:nowrap;
+    }
+</style>
+

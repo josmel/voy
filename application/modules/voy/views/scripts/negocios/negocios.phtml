@@ -1,0 +1,63 @@
+<!-- Section 6 -->
+<section id="section6" class="pricing">
+
+    <div class="container">
+
+        <div class="row flat">
+            <!-- Title row -->
+            <div class="row">
+                <div class="col-md-12 big-title ">
+                    <h2>Planes Negocios</h2>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 sub-title text-center ">
+                    <!-- <h3>What you have become is the price you paid to get what you used to want!</h3>-->
+                </div>
+            </div>
+            <?php $this->getMesseger(); ?>
+            <br>
+            <!-- /Title row -->
+            <div class="contact-form">
+                <div class="container">
+                    <!-- Form element row -->
+                    <div class="row text-center">
+                        <div class="col-md-2"></div>
+                        <?php
+                        foreach ($this->ListarPlanesNegocios as $indice => $tarifa) {
+                            ?>
+                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                <ul class="plan plan3" >
+                                    <li class="plan-name">
+                                        <?= $tarifa['nombre'] ?>
+                                    </li>
+                                    <li class="plan-price"><?= $tarifa['tarifaDescripcion'] ?>
+                                    </li>
+                                    <?php
+                                    $descripcion = explode("|", $tarifa['descripcion']);
+                                    foreach ($descripcion as $valor) {
+                                        ?>
+                                        <li><?= $valor ?></li>
+                                    <?php } ?>
+                                    <li>Válido hasta el <?= $this->fecha; ?>
+                                    </li>
+                                    <li class="plan-action">
+                                            <a href="/cobertura/<?= $tarifa['codigo'] ?>" class="btn btn-2 btn-2c">Lo quiero</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php }
+                        ?>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                    <!-- /Form element row -->
+                </div>
+            </div>
+            <!-- Plan -->
+            <!-- Plan -->
+            <div>
+                <p align="center"><?= $this->TipoPlan ?></p></div>
+            <!-- /Plan -->
+        </div>
+    </div>
+</section> 

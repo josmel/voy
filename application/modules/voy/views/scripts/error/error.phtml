@@ -1,0 +1,41 @@
+<section id="section5" class="clients">
+    <div class="testimonial-wrap">
+        <div class="texture-layer">
+            <div class="container">
+                <!-- Title row -->
+                <div class="row">
+                    <div class="col-md-12 big-title light ">
+                        <h2>Ha ocurrido un error</h2>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /Title row -->
+                <!-- Mapa -->
+                <div class="content">			
+                    <div id="map-canvas"></div>
+                </div>
+                <br><br>
+                <!-- Mensaje: Busca tu dirección -->
+                <div class="col-md-12 sub-title text-center light ">
+                    <?php if (isset($this->exception)): ?>
+
+                        <div class="row">
+                            <div class="col-md-12 big-title light ">
+                                <h2><?php echo $this->exception->getMessage() ?></h2>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+<!--                        <h3>Seguimiento del Error:</h3>
+                        <pre ><?php echo $this->exception->getTraceAsString() ?>
+                        </pre>
+
+                        <h3>Solicitar Parámetros:</h3>
+                        <pre><?php echo $this->escape(var_export($this->request->getParams(), true)) ?>
+                        </pre>-->
+                    <?php endif ?>
+                </div>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</section>

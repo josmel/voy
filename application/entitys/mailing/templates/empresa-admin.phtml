@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Nuevo servicio corporativo</title>
+    </head>
+    <body>
+    <u>Servicio <?= $this->mailData['plan']; ?>:</u> 
+   <br>&nbsp;
+    <div> Plan : <?= $this->mailData['plan']; ?> </div>
+    <div> Tipo : <?= $this->mailData['tipo']; ?> </div>
+    <div> Estado : <?php echo $this->mailData['estado']; ?> </div>
+    <div> Nombre : <?php echo $this->mailData['nombre']; ?> </div>
+    <div> Razon Social : <?php echo $this->mailData['razonSocial']; ?> </div>
+    <!--<div> Telefon&iacute;a : <?php echo $this->mailData['telefonia']; ?> </div>-->
+    <div> Direcci&oacute;n : <?php echo $this->mailData['direccion']; ?> </div>
+    <div> Distrito : <?php echo $this->mailData['distrito']; ?> </div>
+    <div> Fijo : <?php echo $this->mailData['fijo']; ?> </div>
+    <div> M&oacute;vil : <?php echo $this->mailData['celular']; ?> </div>
+    <div> Correo : <?php echo $this->mailData['correo']; ?> </div>
+    <div> Mensaje : <?php echo $this->mailData['Subject']; ?> </div>
+</body>
+</html>

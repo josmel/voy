@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content=" width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <title>Bienvenido a Voy</title>
+        <style type="text/css">
+            @media only screen and (max-device-width: 480px) {
+                table[class=container] {
+                    width: 100% !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
+
+                table [class=shadow] {
+                    box-shadow: none !important;
+                    -moz-box-shadow: none !important;
+                    -webkit-box-shadow: none !important;
+                }
+
+                td[class=headline] h2 {
+                    width: 280px !important;
+                }
+
+                td[class=address] p {
+                    width: 240px !important;
+                }
+
+                td[class=logo_container] .cut {
+                    display: none !important;
+                }
+
+                td[class=logo_container] .logo2x {
+                    display: block !important;
+                    background-image: url(https://voy.pe/static/voy/img/voy2.png) !important;
+                    background-size: 100% 100% !important;
+                    width: 100px !important;
+                    height: 50px !important;
+                    z-index: 1 !important;
+                }
+            }
+        </style>
+    </head>
+    <body class="basic" style="background-color:#eee;width:100%;padding:0px;margin:0px;">
+    <img width="1" height="1" style="display: block;display:block;width:100%;margin:0;padding:0;" src="https://www.voy.pe" />
+    <table id="main_body" class="basic" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;padding:0px;margin:0px;background-color:#eee;">
+        <tbody>
+            <tr>
+                <td align="center">
+                    <table class="container" align="center" cellpadding="0" cellspacing="0" border="0" style="width:500px;background-color:#eee;">
+                        <tbody>
+                            <tr id="header">
+                                <td align="center">
+                                    <table cellpadding="0" cellspacing="0" border="0" align="center">
+                                        <tbody>
+                                            <tr>
+                                                <td class="spacer" height="15px" style="height:15px;display:block;padding:0px;margin:0px;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" width=“100px" height=“50px" class="logo_container" style="height:50px;width:100px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;font-size:16px;font-weight:bold;color:#55acee;text-align:center;height:50px;width:100px;"> <a href="https://www.voy.pe" style="text-decoration:none;color:#8899a6;font-size:11px;"> <img width="100" height="60" valign="center" src="https://voy.pe/static/voy/img/voy25.png" border="0" class="cut" alt="VOY" style="display:block;width:100%;margin:0;padding:0;" /> <span class="logo2x"></span> </a> </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="spacer" height="3px" style="height:3px;display:block;padding:0px;margin:0px;"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table> </td>
+                            </tr>
+                            <tr id="Mod1">
+                                <td>
+                                    <table class="basic" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                        <tbody>
+                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                <td class="spacer" height="10px" style="height:10px;display:block;padding:0px;margin:0px;"></td>
+                                            </tr>
+                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                <td class="modContent" style="font-size: 1px;background-color:#fff">
+                                                    <table class="basic shadow" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;padding:0px;margin:0px;box-shadow:-1px 2px 1px #e5e5e5;-moz-box-shadow:-1px 1px 1px #e5e5e5;-webkit-box-shadow:-1px 1px 1px #e5e5e5;">
+                                                        <tbody>
+                                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                                <td class="blue_border" style="background-color:#baddf6;height:6px;margin:0px;padding:0px;display:block;"></td>
+                                                            </tr>
+                                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                                <td class="spacer" height="15px" style="height:15px;display:block;padding:0px;margin:0px;"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="type_basic" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;color:#4f5c64;padding:0px;margin:0px;"> <h1 class="type_basic" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;color:#4f5c64;padding:0px;margin:0px;font-size:18px;text-align:center;">Hola <?php echo $this->mailData['nombre']; ?>, bienvenido al mundo de internet sin l&iacute;mites.</h1> </td>
+                                                            </tr>
+                                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                                <td class="spacer" height="15px" style="height:15px;display:block;padding:0px;margin:0px;"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td> <a href="https://www.voy.pe" style="text-decoration:none;color:#8899a6;font-size:11px;"> <img class="main_image" src="https://www.voy.pe/static/voy/img/saltando.png" width="100%" border="0" style="width:100%;display:block;width:100%;margin:0;padding:0;background-color:#baddf6;font-family: Helvetica Neue , Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;font-size:16px;font-weight:bold;color:#55acee;text-align:center;" /> </a> </td>
+                                                            </tr>
+                                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                                <td class="spacer" height="30px" style="height:30px;display:block;padding:0px;margin:0px;"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="center" class="headline"> <h2 class="type_basic" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;color:#4f5c64;padding:0px;margin:0px;font-size:22px;line-height:34px;text-align:center;font-weight:300;padding:0px;margin:0;width:400px;"> Pronto nos comunicaremos contigo para coordinar la instalaci&oacute;n de tu servicio.</h2> </td>
+                                                            </tr>
+                                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                                <td class="spacer" height="30px" style="height:30px;display:block;padding:0px;margin:0px;"></td>
+                                                            </tr>
+                                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                                <td align="center">
+                                                                    <table bgcolor="##55acee" border="0" cellspacing="0" cellpadding="0" width="180px" class="button_container" style="white-space:nowrap;background-color:#55acee;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;text-align:center;height:1px;width:190px;box-shadow:-1px 1px 0px #e5e5e5;-moz-box-shadow:-1px 1px 0px #e5e5e5;-webkit-box-shadow:-1px 1px 0px #e5e5e5;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td height="46" align="center" class="button_cta" style="font-size:16px;font-weight:bold;white-space:nowrap;overflow:hidden;padding:0px;margin:0px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;"> <a href="https://www.voy.pe" style="text-decoration:none;color:#8899a6;font-size:11px;"> <span class="link_fix" style="color:#ffffff;text-decoration:none;font-size:16px;"> M&aacute;s informaci&oacute;n </span> </a> </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table> </td>
+                                                            </tr>
+                                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                                <td class="spacer" height="40px" style="height:40px;display:block;padding:0px;margin:0px;"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table> </td>
+                            </tr>
+                            <tr id="footer">
+                                <td>
+                                    <table class="basic" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;padding:0px;margin:0px;">
+                                        <tbody>
+                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                <td class="spacer" height="20" style="height:20px;display:block;padding:0px;margin:0px;"></td>
+                                            </tr>
+                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                <td class="type_basic" style="font-family: Helvetica Neue , Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;color:#4f5c64;padding:0px;margin:0px;"> <p class="type_footer" style="padding:0px;margin:0px;font-size:13px;text-align:center;color:#8899a6;font-weight:300;"> 
+                                                        <a href="https://www.voy.pe/soporte" style="text-decoration:none;color:#8899a6;font-size:11px;text-decoration:none;color:#55acee;font-weight:bold;font-size:13px;-webkit-text-size-adjust:none;">
+                                                            <bold>
+                                                                soporte
+                                                            </bold> </a> &nbsp;|&nbsp; <a href="mailto:contacto@voy.pe" style="text-decoration:none;color:#8899a6;font-size:11px;text-decoration:none;color:#55acee;font-weight:bold;font-size:13px;-webkit-text-size-adjust:none;">
+                                                            <bold>
+                                                                contacto@voy.pe
+                                                            </bold> </a> </p> </td>
+                                            </tr>
+                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                <td class="spacer" height="10" style="height:10px;display:block;padding:0px;margin:0px;"></td>
+                                            </tr>
+                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                <td class="address" align="center"> <p class="type_basic" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;color:#4f5c64;padding:0px;margin:0px;padding:0px;margin:0px;font-size:12px;text-align:center;color:#8899a6;line-height:16px;text-align:center;-webkit-text-size-adjust:none;"> <a href="#" style="text-decoration:none;color:#8899a6;font-size:11px;">Moche Inversiones S.A., Av. Manuel Olgu&iacute;n 335 Oficina 1405, Santiago de Surco, Lima, Per&uacute;</a> </p> </td>
+                                            </tr>
+                                            <tr class="basic" style="width:100%;padding:0px;margin:0px;">
+                                                <td class="spacer" height="20" style="height:20px;display:block;padding:0px;margin:0px;"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table> </td>
+                            </tr>
+                        </tbody>
+                    </table> </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<ul class="admin-menu">
+	<?php foreach($this->menu as $index => $value):?>
+	<li>
+		<a <?php echo ($index==$this->controller)?'class="active"':''; ?> href="<?php echo $value['url']; ?>" title="<?php echo $value['title']; ?>"><span class="<?php echo $value['class']; ?>"></span><?php echo $value['title']; ?></a>
+	</li>
+	<?php endforeach; ?>
+</ul>

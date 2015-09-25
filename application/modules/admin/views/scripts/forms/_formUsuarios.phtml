@@ -1,0 +1,49 @@
+<h3 class="admin-title"><?php echo $this->element->getView()->titulo ?></h3>
+<?php $this->getMesseger(); ?>
+<div class="ctn-back">
+    <a title="Volver al listado de Usuarios" href="/admin/juego">« Volver al listado de Usuarios</a>
+</div>
+<div class="frm-panel">
+
+    <form id="frm-article" action="<?php echo $this->element->getView()->action ?>" 
+          method="post" Enctype="multipart/form-data">
+
+        <div class="control-group">
+            <label class="control-label" for="nombre">Titulo:</label>
+            <div class="controls">
+                <?php echo $this->element->nombre; ?>
+                <?php echo $this->element->idjuego; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="avanzado">Imagen Avanzado (320x96):</label>
+            <div class="controls">
+                <?php echo $this->element->avanzado; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="basico360">Imagen basico360 (180x54):</label>
+            <div class="controls">
+                <?php echo $this->element->basico360; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="url">Url:</label>
+            <div class="controls">
+                <?php echo $this->element->url; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="estado">Estado:</label>
+            <div class="controls">
+                <?php echo $this->element->estado; ?>
+            </div>
+        </div>
+
+        <div class="control-group last">
+            <div class="control">
+                <button class="btn-admin" type="submit"><?php echo $this->element->getView()->submit ?></button>
+            </div>
+        </div>
+    </form>
+</div>

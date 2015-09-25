@@ -1,0 +1,27 @@
+<div class="login-cnt" style="margin-top: 100px" >
+    <div class="ctn-ilogin">
+    <?php $this->getMesseger(); ?>
+        <div class="frmLogin">
+            <form id="frmLogin" method="POST" action="/login">
+                <a href="#" class="sprite logos" ><img src="<?php echo STATIC_URL ?>/img/admin/voy.png" width=199px height=62px /></a>
+                <h3>iniciar sesión para CONTINUAR</h3>
+                <div class="control-group last">
+                    <label class="control-label" for="txtUsername"><i class="sprites icon-user"></i></label>
+                    <div class="controls">
+                        <input id="txtUsername" name="txtUsername" type="text" placeholder="Código de empresario"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="txtPassword"><i class="sprites icon-key block"></i></label>
+                    <div class="controls">
+                        <input id="txtPassword" name="txtPassword" type="password" placeholder="Contraseña"/>
+                    </div>
+                </div>
+                <div class="control mt20">
+                    <button class="btn-entrar" type="submit">ENTRAR</button>
+                </div>
+                <div class="helpers-cnt"><a title="¿Olvidaste tu contraseña?" href="#">¿Olvidaste tu contraseña?</a></div>
+            </form>
+        </div>
+    </div>
+ </div>

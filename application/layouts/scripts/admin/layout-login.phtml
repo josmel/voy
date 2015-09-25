@@ -1,0 +1,48 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="es"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="es"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="es"> <![endif]-->
+<!--[if gt IE 8]> <html lang="es"> <![endif]-->
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Voy Dashboard</title>
+  <meta name="title" content="Administrador Voy"/>
+  <meta name="description" content="admin Voy"/>
+  <meta name="keywords" content="innovacion, tecnologia, telecomunicaciones,internet,fibra optica"/>
+  <meta name="author" content="www.voy.pe/"/>
+  <meta name="viewport" content="width=device-width"/>
+  <meta name="language" content="es"/>
+  <meta name="robots" content="noindex"/>
+  <link href="<?php echo STATIC_URL?>/voy/voy.ico" rel="icon" type="image/vnd.microsoft.icon"/>
+  <link href="<?php echo STATIC_URL?>/voy/voy.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link type="text/css" rel="stylesheet" href="<?php echo STATIC_URL?>css/adminTwo.css?v=<?php echo SITE_VERSION; ?>"/>
+  <link href='http://fonts.googleapis.com/css?family=Cuprum' rel='stylesheet' type='text/css' />
+  <!--[if lt IE 9]><script src="<?php echo STATIC_URL?>js/libs/html5shiv.js"></script><![endif]-->
+</head>
+<body>
+	<?php echo $this->layout()->content; ?>
+	<?php // echo $this->render("admin/footer.phtml"); ?>
+        <script type="text/javascript">
+            var yOSON ={
+                "modulo":"<?php echo $this->module?>",
+                "controller":"<?php echo $this->controller?>",
+                "action":"<?php echo $this->action?>",
+                "baseHost":"<?php echo SITE_URL?>",
+                "statHost":"<?php echo STATIC_URL?>",
+                "statVers":"?72f01fa",
+                <?php foreach ($this->yosonVars as $key => $value) : 
+                     echo '"'.$key.'":'.$value.', '; 
+                    endforeach; 
+                    echo '"min":"","AppCore":{},"AppSandbox":{},"AppSchema":{"modules":{},"requires":{}'
+                    ?>  
+                }
+              };
+        </script>
+	<script src="<?php echo STATIC_URL?>js/libs/framework.js"></script>
+        <script src="<?php echo STATIC_URL?>js/application/yoson.js"></script>
+	<script src="<?php echo STATIC_URL?>js/modules/index.js"></script>
+	<script src="<?php echo STATIC_URL?>js/application/schemas/modules.js"></script>
+	<script src="<?php echo STATIC_URL?>js/application/appLoad.js"></script>
+</body>
+</html>

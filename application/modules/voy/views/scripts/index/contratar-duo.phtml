@@ -1,0 +1,203 @@
+<section id="section6" class="pricing">
+    <div class="container">
+        <div class="row flat">
+            <!-- Title row -->
+            <div class="row">
+                <div class="col-md-12 big-title  ">
+                    <h2>Contratar</h2>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-md-12 sub-title text-center  ">
+                    <h3>Datos del plan y del usuario</h3>
+                </div>
+            </div>
+            <!-- /Title row -->
+            <?php $this->getMesseger();?>
+            <!-- Contact form -->
+            <div class="contact-form">
+                <div class="container">
+                    <!-- Form element row -->
+                    <div class="row text-center">
+                        <div class="col-md-2"></div>
+
+                        <div class="col-md-8">
+                            <form action="/contratar-duo"method="post" name="contratar">
+                                <fieldset>
+                                    <div class="row">
+
+                                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12  ">
+                                            <ul class="plan plan3" >
+                                                <li class="plan-name">
+                                                    Plan 100 Megas + Voz por S/. 200 al mes
+                                                </li>
+                                                <li class="plan-price">
+                                                    Instalación y router óptico incluidos. No incluye equipo telefónico.
+                                                </li>
+                                                <li>
+                                                    Hasta 100 Mpbs de bajada y subida. Velocidad mínima garantizada 40%.
+                                                </li>
+                                                <li>
+                                                    Incluye 300 minutos a fijos locales y 100 minutos a móviles.
+                                                </li>
+
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="name" name="nombre" type="text" placeholder="Nombres" value="" required><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12   ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="lastname" name="apellido" type="text" placeholder="Apellidos" value="" required><br>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="document" name="documento" type="text" placeholder="DNI o CE" value="" required><br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="address" name="direccion" type="text" placeholder="Dirección" value="" required><br>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                         <div class="col-lg-4 col-md-2 col-sm-2 col-xs-4  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label> Departamento</label>
+                                                        <select id="departamento" onChange='cargaContenido(this.id)' name="departamento" class="form-control">
+                                                            <option value='0'>Selecciona Opci&oacute;n...</option> 
+                                                            <?php
+                                                            $departamento = $this->ListarDepartamentos;
+                                                            foreach ($departamento as $indice => $registro) {
+                                                                if ($registro['departamento'] == 15) {
+                                                                    echo "<option  selected='" . $registro['departamento'] . "' value='" . $registro['departamento'] . "'>" . $registro['descripcion'] . "</option>";
+                                                                } else {
+                                                                    echo "<option value='" . $registro['departamento'] . "'>" . $registro['descripcion'] . "</option>";
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-2 col-sm-2 col-xs-4  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group" id="demoDer">
+                                                        <label> Provincia</label>
+                                                        <select  name="provincia" id="provincia" onChange='cargaContenido2(this.id, 15)' class="form-control">
+                                                            <option value="0">Selecciona opci&oacute;n...</option>
+                                                            <?php
+                                                            $ListarProvincias = $this->ListarProvincias;
+                                                            foreach ($ListarProvincias as $indice => $registro) {
+                                                                if ($registro['provincia'] == 1) {
+                                                                    echo "<option  selected='" . $registro['provincia'] . "' value='" . $registro['provincia'] . "'>" . $registro['descripcion'] . "</option>";
+                                                                } else {
+                                                                    echo "<option value='" . $registro['provincia'] . "'>" . $registro['descripcion'] . "</option>";
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-2 col-sm-2 col-xs-4  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group" id="demoProv">
+                                                        <label> Distrito</label>
+                                                        <select  name="distrito" id="distrito" class="form-control">
+                                                            <option value="0">Selecciona opci&oacute;n...</option>
+                                                            <?php
+                                                            $ListarDistritos = $this->ListarDistritos;
+                                                            foreach ($ListarDistritos as $indice => $registro) {
+                                                                if ($registro['distrito'] == 40) {
+                                                                    echo "<option  selected='" . $registro['distrito'] . "' value='" . $registro['distrito'] . "'>" . $registro['descripcion'] . "</option>";
+                                                                } else {
+                                                                    echo "<option value='" . $registro['distrito'] . "'>" . $registro['descripcion'] . "</option>";
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12  ">
+
+                                            <p style="font-style: bold;text-align: left;"><label>Sobre tu teléfono fijo:</label></p>
+
+                                            <p style="font-style: normal;text-align: left;"><input type="radio" name="telefonia" value="nueva" id="order_port_new"> Asignar un nuevo número de teléfono</p>
+                                            <p style="font-style: normal;text-align: left;"><input name="telefonia" type="radio" id="order_port_port" value="port" checked="CHECKED"> Quiero mantener mi número de forma gratuita</p>
+                                        </div>
+
+
+
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="fixed" name="fijo" type="text" placeholder="Número fijo  actual" value="" required><br>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input class="form-control" id="mobile" name="celular" type="text" placeholder="Número móvil" value="" required><br>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input class="form-control" type="email" id="email" name="correo" placeholder="Email" value="" required><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12  ">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    Al hacer clic en el botón "Contratar" usted confirma que ha leído y acepta los <a href="http://www.voy.pe/docs/Voy_Contrato_rev12ago2014.pdf">Términos y Condiciones</a> del servicio, además confirma que su dirección se encuentra dentro del <a href="cobertura"> área de cobertura</a>. Moche Inversiones S.A. realizará una verificación de cobertura y de factibilidad técnica para brindar el servicio en su dirección, de ser aceptado nos comunicaremos con usted para programar la instalación del servicio.  Moche Inversiones S.A. se reserva el derecho de rechazar los contratos en los cuales no tenga factibilidad técnica.<br>&nbsp;</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <button type="submit" class="btn btn-2 btn-2c">Contratar</button>
+                                            <!--<div class="success alert-success alert" style="display:none">-->
+                                            <!--Su solicitud fue enviada con &eacute;xito.-->
+                                            <!--</div>-->
+                                            <div class="error alert-danger alert" style="display:none">
+                                                Debe completar todos los datos y su cuenta de E-mail debe ser v&aacute;lida.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                    <!-- /Form element row -->
+                </div>
+            </div>
+            <!-- /Contact form -->
+        </div>
+    </div>
+</section>

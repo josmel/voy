@@ -1,0 +1,491 @@
+<script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry,places&language=per"></script>
+<script src="<?php  echo STATIC_URL ?>voy/js/bootstrap-shortcodes.js"></script>
+<script src="<?php echo STATIC_URL ?>voy/js/GeoJSON.js"></script>
+<script>
+    var map, layer, overlays = [];
+    var myStyle = {
+        strokeColor: "red",
+        strokeOpacity: 1,
+        strokeWeight: 2,
+        fillColor: "#AAAAAA",
+        fillOpacity: 0.5
+    };
+    currentFeature_or_Features = null;
+    var datos = $.ajax({
+        url: '/voy/cobertura/edificios-vestidos',
+        type: 'post',
+        dataType: 'json',
+        async: false
+    }).responseText;
+    datos = JSON.parse(datos);
+    var geojson_FeatureCollection = datos;
+    var addressStyle = {
+        icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 6.5, //tamaño
+            strokeColor: 'black', //color del borde
+            strokeWeight: 1.2, //grosor del borde
+            fillColor: '#FF6666', //color de relleno
+            fillOpacity: 1// opacidad del relleno
+        }
+    };
+    var plan = {
+        valor: <?= $this->plan ?>
+    };
+    function CenterControl(controlDiv, map) {
+        // Set CSS for the control border
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click para centrar el mapa';
+        controlDiv.appendChild(controlUI);
+        // Set CSS for the control interior
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+//        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Centrar mapa';
+        controlUI.appendChild(controlText);
+        // Setup the click event listeners: simply set the map to
+        // Chicago
+        google.maps.event.addDomListener(controlUI, 'click', function () {
+            map.setCenter(new google.maps.LatLng(<?= $this->address_x; ?>, <?= $this->address_y; ?>))
+        });
+    }
+    var infowindow = new google.maps.InfoWindow();
+    function initialize()
+    {
+        // Set up Address Autocomplete
+        var input = $("#address")[0];
+        // Set up Google Map
+        var input = /** @type {HTMLInputElement} */(document.getElementById('address'));
+
+//        var defaultBounds = new google.maps.LatLngBounds(
+//                            new google.maps.LatLng(-33.8902,1.1759),
+//                            new google.maps.LatLng(-33.8474, 1.2631));
+        var options = {
+//            bounds: defaultBounds,
+//            types: ['establishment'],
+//            types: ['(cities)'],
+            componentRestrictions: {country: 'per'}
+        };
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+        map = new google.maps.Map($("#map")[0], {
+            zoom: <?php if (isset($this->result)) { ?>18<?php } else { ?>15<?php } ?>,
+                        center: new google.maps.LatLng(<?= $this->address_x; ?>, <?= $this->address_y; ?>),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        disableDefaultUI: true,
+                        zoomControl: true
+                    });
+                    // Set up polygons
+<?php if (isset($this->result)) { ?>
+                        var contentString = '<div id="content" style="font-family: Roboto,Arial,sans-serif; font-size: small;max-height: 288px; max-width: 210px;">' +
+                                '<div id="bodyContent">' +
+                                '<p><strong><?php echo strtoupper($this->got_this_address); ?></strong></p>' +
+    <?php
+    if ($this->estado) {
+        switch ($this->area) {
+            case 95:
+                ?>
+                                    '<p>Dirección con Cobertura previa factibilidad técnica<p> ' +
+                                            '<form method="post" action="/contratar">' +
+                                            '<input type="hidden" name="plan" value="<?= $this->plan; ?>"/>' +
+                                            '<input type="hidden" value="<?= $this->got_this_address; ?>" name="direccion"/>' +
+                                            '<input type="submit" value=" Probar Factibilidad »" class="btn btn-info"/>' +
+                                            '<input type="hidden" value="1" name="cobertura"/>' +
+                                            '<input type="hidden" name="source" value="map"/>' +
+                                            '</form>' +
+                <?php
+                break;
+            default:
+                ?>
+                                    '<p>Esta dirección dispone de cobertura pero aún no está activada, en breve lo estará.<p> ' +
+                                            '<form method="post" action="/reservar">' +
+                                            '<input type="hidden" name="plan" value="<?= $this->plan; ?>"/>' +
+                                            '<input type="hidden" value="<?= $this->got_this_address; ?>" name="direccion"/>' +
+                                            '<input type="submit" value="Reservar »" class="btn btn-ttc"/>' +
+                                            '<input type="hidden" value="2" name="cobertura"/>' +
+                                            '<input type="hidden" name="source" value="map"/>' +
+                                            '</form>' +
+                <?php
+                break;
+        }
+    } else {
+        ?>
+                            '<p>Actualmente no disponemos de cobertura en la dirección. Para más información </p>' +
+                                    '<form method="post" action="/reservar">' +
+                                    '<input type="hidden" name="plan" value="<?= $this->plan; ?>"/>' +
+                                    '<input type="hidden" value="<?= $this->got_this_address; ?>" name="direccion"/>' +
+                                    '<input type="submit" value="Reservar »" class="btn btn-null"/>' +
+                                    '<input type="hidden" value="3" name="cobertura"/>' +
+                                    '<input type="hidden" name="source" value="map"/>' +
+                                    '</form>' +
+    <?php } ?>
+                        '</div></div>';
+                        var infowindow = new google.maps.InfoWindow({
+                            content: contentString
+                        });
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(<?= $this->address_x; ?>, <?= $this->address_y; ?>),
+                            map: map,
+                            title: "<?= $this->got_this_address; ?>",
+                            animation: google.maps.Animation.DROP
+                                    //                            iconName: 'small_red'
+                        });
+                        //                google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(map, marker);
+                        //                });
+
+                        google.maps.event.addListener(marker, 'click', toggleBounce);
+<?php } ?>
+
+
+                    // Set up polygons
+<?php
+if (!empty($this->polygons)) {
+    foreach ($this->polygons as $key => $polygon) {
+        ?>
+                            var poly<?php echo $key; ?>, box<?php echo $key; ?>;
+                            box<?php echo $key; ?> = [
+        <?php
+        foreach ($polygon as $polygon_key => $co) {
+            if ($polygon_key != 0) {
+                echo ", ";
+            }
+            ?>
+                                    new google.maps.LatLng(<?= $co[0]; ?>, <?= $co[1]; ?>)
+            <?php
+        }
+        ?>
+                            ];
+                            poly<?= $key; ?> = new google.maps.Polygon({
+
+                            paths: box<?= $key; ?>,
+        <?php if ($key == 'cobertura') { ?>
+                                strokeColor: "#0000FF",
+                                        fillColor: "#0000FF",
+        <?php } else { ?>
+                                strokeColor: "#FADF02",
+                                        fillColor: "#FADF02",
+        <?php } ?>
+                            strokeOpacity: 0.8,
+                                    strokeWeight: 2,
+                                    fillOpacity: 0.4
+                            });
+                                    poly<?= $key; ?>.setMap(map);
+                            google.maps.event.addListener(poly<?= $key; ?>, 'click', function (event) {
+                                var contentString = '<b>Zona  <?= $key; ?></b><br>';
+                                infoWindow.setContent(contentString);
+                                infoWindow.setPosition(event.latLng);
+                                infoWindow.open(map);
+                            });
+        <?php
+    }
+}
+?>
+                    infoWindow = new google.maps.InfoWindow();
+                    var centerControlDiv = document.createElement('div');
+                    var centerControl = new CenterControl(centerControlDiv, map);
+                    centerControlDiv.index = 1;
+                    map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
+                    var panoramaOptions = {
+                        position: new google.maps.LatLng(<?= $this->address_x; ?>, <?= $this->address_y; ?>),
+                        pov: {
+                            heading: 34,
+                            pitch: 10
+                        }
+                    };
+                    var panorama = new google.maps.StreetViewPanorama(document.getElementById('streetView'), panoramaOptions);
+                    map.setStreetView(panorama);
+                    showFeature(geojson_FeatureCollection, addressStyle, plan);
+                }
+                function toggleBounce() {
+
+                    if (marker.getAnimation() != null) {
+                        marker.setAnimation(null);
+                    } else {
+                        marker.setAnimation(google.maps.Animation.BOUNCE);
+                    }
+                }
+                function clearMap() {
+                    if (!currentFeature_or_Features)
+                        return;
+                    if (currentFeature_or_Features.length) {
+                        for (var i = 0; i < currentFeature_or_Features.length; i++) {
+                            if (currentFeature_or_Features[i].length) {
+                                for (var j = 0; j < currentFeature_or_Features[i].length; j++) {
+                                    currentFeature_or_Features[i][j].setMap(null);
+                                }
+                            }
+                            else {
+                                currentFeature_or_Features[i].setMap(null);
+                            }
+                        }
+                    } else {
+                        currentFeature_or_Features.setMap(null);
+                    }
+                    if (infowindow.getMap()) {
+                        infowindow.close();
+                    }
+                }
+                function showFeature(geojson, style, plan) {
+                    clearMap();
+                    currentFeature_or_Features = new GeoJSON(geojson, style || null);
+                    if (currentFeature_or_Features.type && currentFeature_or_Features.type == "Error") {
+                        document.getElementById("put_geojson_string_h ere").value = currentFeature_or_Features.message;
+                        return;
+                    }
+                    if (currentFeature_or_Features.length) {
+                        for (var i = 0; i < currentFeature_or_Features.length; i++) {
+                            if (currentFeature_or_Features[i].length) {
+                                for (var j = 0; j < currentFeature_or_Features[i].length; j++) {
+                                    currentFeature_or_Features[i][j].setMap(map);
+                                    if (currentFeature_or_Features[i][j].geojsonProperties) {
+                                        setInfoWindow(currentFeature_or_Features[i][j], plan);
+                                    }
+                                }
+                            }
+                            else {
+                                currentFeature_or_Features[i].setMap(map);
+                            }
+                            if (currentFeature_or_Features[i].geojsonProperties) {
+                                setInfoWindow(currentFeature_or_Features[i], plan);
+                            }
+                        }
+                    } else {
+                        currentFeature_or_Features.setMap(map)
+                        if (currentFeature_or_Features.geojsonProperties) {
+                            setInfoWindow(currentFeature_or_Features, plan);
+                        }
+                    }
+                    document.getElementById("put_geojson_string_here").value = JSON.stringify(geojson);
+                }
+
+                function setInfoWindow(feature, plan) {
+                    google.maps.event.addListener(feature, "mouseover", function (event) {
+                        var content = "<div id='infoBox'>";
+                        for (var j in this.geojsonProperties) {
+//                    content += this.geojsonProperties[j] + "<br />";
+                            content += '<div style="display: inline-block; overflow: auto; max-height: 288px; max-width: 654px;">' +
+                                    '<div style="font-family: Roboto, Arial, sans-serif; font-size: small;">' +
+                                    '<div>' +
+                                    '<div class="map-marker">';
+                            content = '<strong>' + this.geojsonProperties['direccion'] + "<br/>";
+                            content += this.geojsonProperties['nombre'] + "</strong><br/>";
+                            content += '<p>Dirección con Cobertura<p> ';
+                            content += '<form method="post" action="/contratar">' +
+                                    '<input type="submit" value="Contratar »" class="btn btn-info"/>' +
+                                    '<input type="hidden" name="predio" value="' + this.geojsonProperties['codigo'] + '"/>' +
+                                    '<input type="hidden" name="plan" value="' + plan.valor + '"/>' +
+                                    '<input type="hidden" value="1" name="cobertura"/>' +
+                                    '<input type="hidden" name="source" value="map"/>' +
+                                    '</form>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>';
+                        }
+                        content += "</div>";
+                        infowindow.setContent(content);
+                        infowindow.setPosition(event.latLng);
+                        infowindow.open(map);
+                    });
+                }
+
+                google.maps.event.addDomListener(window, "load", initialize);
+
+<?php if (isset($this->errorBusqueda) && $this->errorBusqueda == 1) { ?>
+                    var $j = jQuery.noConflict();
+                    $j(document).ready(function () {
+                        $j('#alert-modal').modal('show');
+                    });
+<?php } ?>
+
+</script>
+<section id="section6" class="pricing">
+    <div class="container">
+        <div class="row flat">
+            <div class="col-lg-7 col-md-8 col-sm-8 col-xs-12">
+                <div id="panel">
+                    <form method="post" class="navbar-form">
+                        <div class="form-group" style="display:inline;">
+                            <div id="imaginary_container"> 
+                                <div class="input-group stylish-input-group">
+                                    <input id="address" type="text" name="address" value="<?= $this->got_this_address; ?>" class="form-control"  placeholder="Buscar su Dirección..." required >
+                                    <span class="input-group-addon">
+                                        <button type="submit">
+                                            <span class="fa fa-search fa-fw"></span>
+                                        </button>  
+                                    </span>
+                                </div>
+                            </div>
+                <!--                                <input id="address" name="address" value="<?= $this->got_this_address; ?>" placeholder="Buscar su Dirección..." type="text" class="form-control" required>
+                                                <span class="input-group-addon"><span class="fa fa-search fa-fw"></span></span>-->
+                            <div class="error alert-danger alert" style="display:none">
+                                Debe completar todos los datos .
+                            </div>
+                        </div>
+                    </form>
+                </div>
+<!--                <input type="text" size="50" id="service" name="service" />
+                <div id="suggestions"></div>-->
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">                        
+                <!-- START GOOGLE MAP BUSQUEDA COBERTURA-->
+                <!--            <div class="panel panel-default">
+                                <div class="panel-body panel-body-map">-->
+                <div id="map" style="width: 100%; height: 620px;">
+                </div>
+                <!--                </div>
+                            </div>-->
+                <!-- GOOGLE MAP BUSQUEDA COBERTURA -->
+            </div>
+            <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">                        
+                <!-- START GOOGLE STREET VIEW -->
+                <div id="streetView" style="width: 100%; height: 620px;">
+                </div>
+                <!-- END GOOGLE STREET VIEW -->
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <h3>CONSULTA TU COBERTURA</h3>
+                <div class="dividor">
+             <!--<span/>-->
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"><img class="img-responsive" src="/static/img/mapaVoyLeyenda.png" alt=""/></div>
+            <div class=" col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <h3>Busca tu dirección en el mapa</h3>
+                <p>
+                    La zona resaltada en azul muestra nuestra cobertura actual. 
+                    La zona resaltada en amarillo muestra la cobertura en construcción.<br>
+                    Los puntos rojos y amarillos muestran las direcciones donde tenemos cobertura. Los rojos significan que las direcciones están activadas y que ya puedes contratar nuestros servicios. Los amarillos significan que las direcciones estarán activadas próximamente, en ese caso envíanos tus datos de contacto y te avisaremos cuando puedas contratar nuestros servicios.
+                </p>
+            </div>
+
+            <!-- Small modal -->
+            <div class="modal fade" id="alert-modal">
+                <div class="modal-dialog modal-sm" style="top:300px;">
+                    <div class="modal-content  alert alert-danger">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        No se ha encontrado la dirección. Por favor, introduzca una dirección y vuelva a intentarlo.. 
+                    </div>
+                </div>
+            </div>  
+
+        </div>
+</section> 
+<style>
+    .dividor {
+        background-color:#65B9E1;
+        border-bottom-color:#65B9E1;
+        border-bottom-style:solid;
+        border-bottom-width:1px;
+        height:1px;
+        margin:0.5em 0 1.5em;
+    }
+    .dividor span {
+        background-color:#65B9E1;
+        display:block;
+        height:1px;
+        width:50px;
+    }
+    #infoBox{
+        background-color:#FFFFFF;
+        border-radius:2px;
+        height:112px;
+        left:1px;
+        position:absolute;
+        top:1px;
+        width:201px;
+    }
+    #map {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 80%;
+    }
+    .btn-info {
+        background-color:#5BC0DE;
+        border-color:#EEA236;
+        color:#FFFFFF;
+    }
+    .btn {
+        -webkit-user-select:none;
+        background-image:none;
+        border:1px solid transparent;
+        border-radius:4px;
+        cursor:pointer;
+        display:inline-block;
+        font-size:14px;
+        font-weight:400;
+        line-height:1.42857143;
+        margin-bottom:0;
+        padding:6px 12px;
+        text-align:center;
+        vertical-align:middle;
+        white-space:nowrap;
+    }
+    .btn-ttc,
+    .btn-ttc:hover,
+    .btn-ttc:active {
+        color: white;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #007da7;
+    }
+    /* Aplicar gradientes de colores */
+    /* Nota: no se muestran aquí todos los gradientes que tendrás que
+       definir para los diferentes navegadores. */
+    .btn-ttc {
+        background-repeat: repeat-x;
+        background-image: linear-gradient(top, #009ED2 0%, #007DA7 100%);
+    }
+    /* Estilos del estado :hover del botón */
+    /* Uno de los estilos más sencillos y eficaces para el estado :hover
+       consiste en subir hacia arriba ligeramente la imagen de fondo del
+       botón, pero puedes definir otros estilos adicionales si quieres. */
+    .btn-null:hover {
+        background-position: 0 -15px;
+    }
+    .btn-null,
+    .btn-null:hover,
+    .btn-null:active {
+        color: white;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        background-color: #ff3f3f;
+    }
+    /* Aplicar gradientes de colores */
+    /* Nota: no se muestran aquí todos los gradientes que tendrás que
+       definir para los diferentes navegadores. */
+    .btn-null {
+        background-repeat: repeat-x;
+        background-image: linear-gradient(top, #df1f1f 0%, #bf0000 100%);
+    }
+    /* Estilos del estado :hover del botón */
+    /* Uno de los estilos más sencillos y eficaces para el estado :hover
+       consiste en subir hacia arriba ligeramente la imagen de fondo del
+       botón, pero puedes definir otros estilos adicionales si quieres. */
+    .btn-null:hover {
+        background-position: 0 -15px;
+    }
+    .stylish-input-group .input-group-addon{
+        background: white !important; 
+    }
+    .stylish-input-group .form-control{
+        border-right:0; 
+        box-shadow:0 0 0; 
+        border-color:#ccc;
+    }
+    .stylish-input-group button{
+        border:0;
+        background:transparent;
+    }
+</style>

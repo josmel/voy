@@ -1,0 +1,13 @@
+<h3 class="admin-title">Dashboard</h3>
+<div class="row-well">
+	<p>Bienvenido <?php echo $this->identity->login ?>, que operación desea realizar:</p>
+	<ul class="list-opt">
+		<?php foreach($this->menu as $index => $value):?>
+			<?php if($index!=$this->controller): ?>
+			<li>
+				<a href="<?php echo $value['url']; ?>" title="<?php echo $value['title']; ?>"><span class="<?php echo $value['class']; ?>"></span><?php echo $value['title']; ?></a>
+			</li>
+			<?php endif; ?>
+		<?php endforeach; ?>
+	</ul>
+</div>

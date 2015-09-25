@@ -1,0 +1,43 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="es"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="es"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="es"> <![endif]-->
+<!--[if gt IE 8]> <html lang="es"> <![endif]-->
+<?php  echo $this->render("admin/head.phtml"); ?>
+<body>
+	<?php echo $this->render("admin/header.phtml"); ?>
+	<div id="wrapper">
+		<aside class="sidebar">
+			<img class="side-logo" src="<?php echo STATIC_URL; ?>img/admin/logo.png" width="212" height="60" />
+			<?php echo $this->render("admin/menu.phtml"); ?>
+		</aside>
+		<div class="container">
+			<?php echo $this->layout()->content; ?>
+		</div>
+	</div>
+	<?php echo $this->render("admin/footer.phtml"); ?>
+        <script type="text/javascript">
+            var yOSON ={
+                "modulo":"<?php echo $this->module?>",
+                "controller":"<?php echo $this->controller?>",
+                "action":"<?php echo $this->action?>",
+                "baseHost":"<?php echo SITE_URL?>",
+                "statHost":"<?php echo STATIC_URL?>",
+                "eleHost":"<?php echo DINAMIC_URL?>",
+                "statVers":"?<?php echo SITE_VERSION; ?>",
+                <?php foreach ($this->yosonVars as $key => $value) : 
+                     echo '"'.$key.'":'.$value.', '; 
+                    endforeach; 
+                    echo '"min":"","AppCore":{},"AppSandbox":{},"AppSchema":{"modules":{},"requires":{}'
+                    ?>  
+                }
+              };
+        </script>
+	<script src="<?php echo STATIC_URL?>js/libs/framework.js?v=<?php echo SITE_VERSION; ?>"></script>
+	<script src="<?php echo STATIC_URL?>js/application/yoson.js?v=<?php echo SITE_VERSION; ?>"></script>
+	<script src="<?php echo STATIC_URL?>js/modules/admin.js?v=<?php echo SITE_VERSION; ?>"></script>
+	<script src="<?php echo STATIC_URL?>js/application/schemas/mAdmin.js?v=<?php echo SITE_VERSION; ?>"></script>
+	<script src="<?php echo STATIC_URL?>js/application/schemas/modules.js?v=<?php echo SITE_VERSION; ?>"></script>
+        <script src="<?php echo STATIC_URL?>js/application/appLoad.js?v=<?php echo SITE_VERSION; ?>"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!-- Section 6 -->
+<section id="section6" class="pricing">
+
+    <div class="container">
+
+        <div class="row flat">
+            <!-- Title row -->
+            <div class="row">
+                <div class="col-md-12 big-title ">
+                    <h2>Planes Residencial</h2>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 sub-title text-center ">
+                    <!-- <h3>What you have become is the price you paid to get what you used to want!</h3>-->
+                </div>
+            </div>
+             <?php $this->getMesseger(); ?>
+            <br>
+            <!-- /Title row -->
+            <!-- Plan -->
+            <?php
+            foreach ($this->ListarPlanesResidencial as $indice => $tarifa) {
+                ?>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <ul class="plan plan3" >
+                        <li class="plan-name">
+                            <?= $tarifa['nombre'] ?>
+                        </li>
+                        <li class="plan-price"><?= $tarifa['tarifaDescripcion'] ?>
+                        </li>
+                        <?php
+                        $descripcion = explode("|", $tarifa['descripcion']);
+                        foreach ($descripcion as $valor) {
+                            ?>
+                            <li><?= $valor ?></li>
+                        <?php } ?>
+                        <li>Válido hasta el <?= $this->fecha; ?>
+                        </li>
+                        <li class="plan-action">
+                            <?php if ($tarifa['codigo'] == 2) { ?>
+                                <a href="/contratar-telefonia/<?= $tarifa['codigo'] ?>" class="btn btn-2 btn-2c">Lo quiero</a>
+                                <?php
+                            } else {
+                                if ($this->flujoResidencial == 1) {
+                                    switch ($this->cobertura) {
+                                        case 1:
+                                            ?>
+                                            <form action="/contratar" method="post" name="contratar">
+                                                <?php break;
+                                            case 2:
+                                                ?>
+                                                <form action="/reservar" method="post" name="contratar">
+                                                    <?php break;
+                                                case 3:
+                                                    ?>
+                                                    <form action="/reservar" method="post" name="contratar">
+
+                                                        <?php
+                                                        break;
+
+                                                    default:
+                                                        break;
+                                                }
+                                                ?>
+                                                <input  name="cobertura" type="hidden"  value="<?= $this->cobertura ?>" >
+                                                <input  name="plan" type="hidden"  value="<?= $tarifa['codigo']?>" >
+                                                <input  name="source" type="hidden"  value="map" >
+                                                <?php if (isset($this->predio)): ?>
+                                                    <input  name="predio" type="hidden"  value="<?php echo $this->predio ?>" >
+                                            <?php
+                                            endif;
+                                            if (isset($this->direccion)):
+                                                ?>
+                                                    <input  name="direccion" type="hidden"  value="<?php echo $this->direccion ?>" >
+                                       <?php endif; ?>
+                                                <button type="submit" class="btn btn-2 btn-2c">Contratar</button>
+                                            </form>
+                                        <?php }else { ?>
+                                            <a href="/cobertura/<?= $tarifa['codigo'] ?>" class="btn btn-2 btn-2c">Lo quiero</a>
+                                        <?php }
+                                    } ?>
+                                    </li>
+                                    </ul>
+                                    </div>
+                                    <?php }
+                                    ?>
+                                <!-- /Plan -->
+                   </div>
+            <div>
+                <p align="center"><?= $this->TipoPlan ?></p>
+            </div>
+    </div>
+ </section> 

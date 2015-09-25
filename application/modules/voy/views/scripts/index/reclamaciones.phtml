@@ -1,0 +1,67 @@
+<!-- Section 2 -->
+<section id="section2" class="about">
+    <!-- Contact form -->
+    <div class="contact-form">
+        <div class="container">
+            <!-- Title row -->
+            <div class="row">
+                <div class="col-md-12 big-title ">
+                    <h2>Libro de reclamaciones</h2>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 sub-title text-center ">
+                    <p>Aquí podrá presentar únicamente insatisfacciones generadas con los productos Voy, así como por la atención recibida de nuestros colaboradores. <br>Si su insatisfacción corresponde a facturación, instalaciones o calidad puede presentar un reclamo a través de los formularios incluidos <a href="legal">aquí.</a> </p><br>
+                </div>
+            </div>
+            <!-- /Title row -->
+             <?php $this->getMesseger();?>
+            <!-- Form element row -->
+            <div class="row text-center">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form action="/reclamaciones" method="post" name="soporte">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input class="form-control" id="name" name="Name" type="text" placeholder="Nombres y apellidos" value="" required><br>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input class="form-control" type="email" id="email" name="Email" placeholder="Email" value="" required><br>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input class="form-control" type="text" id="phone" name="Phone" placeholder="Teléfono" value="" required><br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea class="form-control" id="subject" name="Subject" rows="8" cols="40" placeholder="Mensaje" required></textarea><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <button type="submit" class="btn btn-2 btn-2c">Enviar</button>
+                                    <!--<div class="success alert-success alert" style="display:none">Su mensaje fue enviado con &eacute;xito.</div>-->
+                                    <div class="error alert-danger alert" style="display:none">Su cuenta de E-mail debe ser v&aacute;lida y su mensaje mayor a 100 caracteres.</div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="col-md-2"></div>
+            </div>
+            <!-- /Form element row -->
+        </div>
+    </div>
+    <!-- /Contact form -->
+
+    <hr>
+
+</section>

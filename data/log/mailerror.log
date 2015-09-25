@@ -1,0 +1,57 @@
+2015-03-12T17:10:15-05:00 INFO (6): ***********************************
+2015-03-12T17:10:15-05:00 INFO (6): Template: contratartelefoniaAdmin
+2015-03-12T17:10:15-05:00 INFO (6): Mail Data: [{"telefonia":"port","documento":null,"nombre":"Josmel","apellido":"Yupanqui Huaman","direccion":"Av. los algarrobos y Av. 1 de mayo MZ.A  LT.1","distrito":"villa el salvador","fijo":"fefe","celular":"fefefe","correo":"josmelnyh89@gmail.com","tipo":"contrato"}]
+2015-03-12T17:10:15-05:00 INFO (6): Error Message: 5.7.8 Username and Password not accepted. Learn more at
+ 5.7.8 http://support.google.com/mail/bin/answer.py?answer=14257 131sm108554qhh.48 - gsmtp
+
+2015-03-12T17:10:15-05:00 INFO (6): ***********************************
+2015-03-12T17:10:15-05:00 INFO (6): 
+2015-03-12T17:10:17-05:00 INFO (6): ***********************************
+2015-03-12T17:10:17-05:00 INFO (6): Template: contratartelefonia
+2015-03-12T17:10:17-05:00 INFO (6): Mail Data: [{"telefonia":"port","documento":null,"nombre":"Josmel","apellido":"Yupanqui Huaman","direccion":"Av. los algarrobos y Av. 1 de mayo MZ.A  LT.1","distrito":"villa el salvador","fijo":"fefe","celular":"fefefe","correo":"josmelnyh89@gmail.com","tipo":"contrato","to":"josmelnyh89@gmail.com"}]
+2015-03-12T17:10:17-05:00 INFO (6): Error Message: 5.7.8 Username and Password not accepted. Learn more at
+ 5.7.8 http://support.google.com/mail/bin/answer.py?answer=14257 74sm131531qgp.9 - gsmtp
+
+2015-03-12T17:10:17-05:00 INFO (6): ***********************************
+2015-03-12T17:10:17-05:00 INFO (6): 
+2015-06-02T15:07:07-05:00 INFO (6): ***********************************
+2015-06-02T15:07:07-05:00 INFO (6): Template: contratarduo
+2015-06-02T15:07:07-05:00 INFO (6): Mail Data: [{"documento":null,"nombre":null,"apellido":null,"direccion":null,"distrito":null,"fijo":null,"celular":null,"correo":null,"tipo":"contrato","to":null}]
+2015-06-02T15:07:07-05:00 INFO (6): Error Message: 5.5.2 Syntax error. 28sm7968993qkt.2 - gsmtp
+
+2015-06-02T15:07:07-05:00 INFO (6): ***********************************
+2015-06-02T15:07:07-05:00 INFO (6): 
+2015-06-02T15:56:47-05:00 INFO (6): ***********************************
+2015-06-02T15:56:47-05:00 INFO (6): Template: contratar
+2015-06-02T15:56:47-05:00 INFO (6): Mail Data: [{"documento":null,"nombre":null,"apellido":null,"direccion":null,"distrito":null,"fijo":null,"celular":null,"correo":null,"tipo":"contrato","to":null}]
+2015-06-02T15:56:47-05:00 INFO (6): Error Message: 5.5.2 Syntax error. 64sm8034998qkw.13 - gsmtp
+
+2015-06-02T15:56:47-05:00 INFO (6): ***********************************
+2015-06-02T15:56:47-05:00 INFO (6): 
+2015-06-05T10:45:44-05:00 INFO (6): ***********************************
+2015-06-05T10:45:44-05:00 INFO (6): Template: contratar
+2015-06-05T10:45:45-05:00 INFO (6): Mail Data: [{"documento":null,"nombre":null,"apellido":null,"direccion":"Link Tower, Manuel Olguin, Lima, Peru","distrito":null,"fijo":null,"celular":null,"correo":null,"tipo":"contrato","to":null}]
+2015-06-05T10:45:45-05:00 INFO (6): Error Message: 5.5.2 Syntax error. 28sm4118286qkt.2 - gsmtp
+
+2015-06-05T10:45:45-05:00 INFO (6): ***********************************
+2015-06-05T10:45:45-05:00 INFO (6): 
+2015-06-05T10:55:16-05:00 INFO (6): ***********************************
+2015-06-05T10:55:16-05:00 INFO (6): Template: contratar
+2015-06-05T10:55:16-05:00 INFO (6): Mail Data: [{"documento":null,"nombre":null,"apellido":null,"direccion":"Link Tower, Manuel Olguin, Lima, Peru","distrito":null,"fijo":null,"celular":null,"correo":null,"tipo":"contrato","to":null}]
+2015-06-05T10:55:16-05:00 INFO (6): Error Message: 5.5.2 Syntax error. e71sm4136647qka.40 - gsmtp
+
+2015-06-05T10:55:16-05:00 INFO (6): ***********************************
+2015-06-05T10:55:16-05:00 INFO (6): 
+2015-06-15T18:00:26-05:00 INFO (6): ***********************************
+2015-06-15T18:00:26-05:00 INFO (6): Template: contratarnegocios
+2015-06-15T18:00:26-05:00 INFO (6): Mail Data: [{"fijo":"3432432","celular":"4234234324","correo":"josmelnyh89@gmail.com","nombre":"dddedede","razonSocial":"dwdw","plan":"100 MEGAS + TELEFONO VOY NEGOCIOS","tipo":"Negocios","estado":"Contratar por Web","mensaje":"Pronto nos comunicaremos contigo para coordinar la instalaci&oacute;n de tu servicio.","to":null}]
+2015-06-15T18:00:26-05:00 INFO (6): Error Message: 5.5.2 Syntax error. 131sm7029668qhf.14 - gsmtp
+
+2015-06-15T18:00:26-05:00 INFO (6): ***********************************
+2015-06-15T18:00:26-05:00 INFO (6): 
+2015-08-10T15:21:42-05:00 INFO (6): ***********************************
+2015-08-10T15:21:42-05:00 INFO (6): Template: contratarAdminTwo
+2015-08-10T15:21:42-05:00 INFO (6): Mail Data: [{"documento":"22332232","nombre":"Prueba170wq","apellido":"prueba201wq prueba170wq","direccion":"MACROS, AV. MANUEL OLGUIN 501","distrito":"SANTIAGO DE SURCO","fijo":"232323232","celular":"23232323232","correo":"josmelnyh89@gmail.com","plan":"100 Megas","tipo":"Residencial","estado":"Contratar por Web","mensaje":"En breve nos comunicaremos contigo para coordinar la instalaci&oacute;n de tu servicio.","asunto":"Plan: 100 Megas [Residencial] -- Estado : Contratar por Web"}]
+2015-08-10T15:21:42-05:00 INFO (6): Error Message: Subject no puede ser vacío, verificar mailing.ini
+2015-08-10T15:21:42-05:00 INFO (6): ***********************************
+2015-08-10T15:21:42-05:00 INFO (6): 

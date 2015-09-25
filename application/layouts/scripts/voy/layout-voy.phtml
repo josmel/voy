@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <?= $this->headTitle() ?>
+        <?= $this->headMeta() ?>
+        <link rel="shortcut icon" href="<?php echo STATIC_URL ?>voy/voy.ico" />
+        <!-- css -->
+        <link href="<?php echo STATIC_URL ?>voy/css/general.css" rel="stylesheet" />
+        <link href="<?php echo STATIC_URL ?>voy/css/avanzado.css" rel="stylesheet" />
+        <link href="<?php echo STATIC_URL ?>voy/css/slider.css" rel="stylesheet" />
+        <script type="text/javascript" src="<?php echo STATIC_URL ?>voy/js/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo STATIC_URL ?>voy/js/slider.js"></script>
+
+
+        <!-- Google Fonts -->
+                <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+                    <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,600,700' rel='stylesheet' type='text/css'>
+                        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine" />
+        <!-- Library CSS -->
+        <link rel="stylesheet" href="<?php echo STATIC_URL ?>voy/css/bootstrap.min.css">
+            <link rel="stylesheet" href="<?php echo STATIC_URL ?>voy/css/bootstrap-theme.min.css">
+                <link rel="stylesheet" href="<?php echo STATIC_URL ?>voy/css/team-member.css" media="screen">
+                    <link rel="stylesheet" href="<?php echo STATIC_URL ?>voy/css/fonts/font-awesome/css/font-awesome.css">
+                        <link rel="stylesheet" href="<?php echo STATIC_URL ?>voy/css/animations.css" media="screen">
+                            <link rel="stylesheet" href="<?php echo STATIC_URL ?>voy/css/prettyPhoto.css" media="screen">
+                                <link rel="stylesheet" href="<?php echo STATIC_URL ?>voy/css/jquery.bxslider.css" media="screen">
+                                    <!-- Theme CSS -->
+                                    <link rel="stylesheet" href="<?php echo STATIC_URL ?>voy/css/style.css">
+                                        <link rel="stylesheet" href="<?php echo STATIC_URL ?>voy/css/global.css">
+                                            <!-- Skin -->
+                                            <link rel="stylesheet" href="<?php echo STATIC_URL ?>voy/css/colors/blue.css" class="colors">
+                                                <!-- Favicons -->
+                                                <link rel="apple-touch-icon" href="<?php echo STATIC_URL ?>voy/img/ico/apple-touch-icon.png">
+                                                    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo STATIC_URL ?>voy/img/ico/apple-touch-icon-72.png">
+                                                        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo STATIC_URL ?>voy/img/ico/apple-touch-icon-114.png">
+                                                            <link rel="apple-touch-icon" sizes="144x144" href="<?php echo STATIC_URL ?>voy/img/ico/apple-touch-icon-144.png">
+                                                                <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+                                                                <!--[if lt IE 9]>
+                                                                <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                                                                <script src="js/respond.min.js"></script>
+                                                                <![endif]-->
+                                                                <!--[if IE]>
+                                                                <link rel="stylesheet" href="css/ie.css">
+                                                                <![endif]-->
+
+
+                                                                </head>
+                                                                <body data-spy="scroll" data-target="#navigation" data-offset="75">
+                                                                    <!-- Warpper -->
+                                                                    <div class="wrap with-logo">
+                                                                        <!-- Header -->
+                                                                        <header id="section1" class="parallax-slider">
+                                                                            <!-- Navigation -->
+                                                                            <div id="navigation">
+                                                                                <nav class="navbar navbar-custom cl-effect-21" role="navigation">
+                                                                                    <div class="container">
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-2 mob-logo">
+                                                                                                <div class="row">
+                                                                                                    <div class="site-logo">
+
+                                                                                                        <!-- ACTUALIZAR LINK DEL LOGO PARA QUE APUNTE AL INICIO -->
+                                                                                                        <a href="https://voy.pe"><img align="center" width="90" height="56" alt="Voy" src="<?php echo STATIC_URL ?>voy/img/voy2.png" ></a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="col-md-10 mob-menu">
+                                                                                                <div class="row">
+                                                                                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                                                                                    <div class="navbar-header">
+                                                                                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                                                                                                            <i class="fa fa-bars"></i>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                                                                                    <div class="collapse navbar-collapse" id="menu">
+                                                                                                        <ul class="nav navbar-nav navbar-right">
+                                                                                                            <li class="dropdown nav-toggle">
+                                                                                                                <a href="/planes" class="dropdown-toggle" data-toggle="dropdown">Planes<b class="caret"></b></a>
+                                                                                                                <ul class="dropdown-menu">
+                                                                                                                    <li><a class="external" href="/residencial">Residencial</a></li>
+                                                                                                                    <li><a class="external" href="/negocios">Negocios</a></li>
+                                                                                                                    <li><a class="external" href="/empresas">Empresas</a></li>
+                                                                                                                </ul>
+                                                                                                            </li>
+                                                                                                            <li><a class="external" href="/soporte" >Soporte</a></li>
+                                                                                                            <li >
+                                                                                                                <!--<a href="/cobertura" class="external">Comprueba tu dirección</a>-->
+                                                                                                                   <a href="/cobertura" class="external">Buscar Cobertura</a>
+<!--                                                                                                                <ul class="dropdown-menu">
+                                                                                                                    <li><a class="external" href="surco.php">Surco</a></li>
+                                                                                                                    <li><a class="external" href="cobertura">Surco</a></li>
+                                                                                                                    <li><a class="external" href="lamolina.php">La Molina</a></li>
+                                                                                                                    <li><a class="external" href="cobertura">La Molina</a></li>
+                                                                                                                    <li><a class="external" href="otros">Otros</a></li>
+                                                                                                                </ul>-->
+                                                                                                            </li>
+                                                                                                            <!--<li><a href="#" >Mi cuenta</a></li> -->
+                                                                                                        </ul>
+
+
+                                                                                                    </div>
+                                                                                                    <!-- /.Navbar-collapse -->
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- /.container -->
+                                                                                </nav>
+                                                                            </div> 
+                                                                            <!-- /Navigation -->                          
+                                                                        </header>
+                                                                        <!-- /Header -->
+
+
+                                                                        <?= $this->layout()->content ?> 
+
+                                                                        <footer>
+                                                                            <div class="container">
+                                                                                <div class="row">
+                                                                                    <div class="widgets">
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="fwidget">
+                                                                                                <h4>Informaci&oacute;n</h4>
+                                                                                                <ul>
+                                                                                                    <li><a href="/soporte">Preguntas frecuentes</a></li>
+                                                                                                    <li><a href="/empresas">Planes corporativos</a></li>
+                                                                                                    <li><a href="/cobertura">Cobertura</a></li>
+                                                                                                    <li><a  target="_blank" href="/documentos/Listado-de-Preguntas-y-Respuestas-sobre-la-Portabilidad-Numerica.pdf">Portabilidad de telefonía fija</a></li>
+                                                                                                    <li><a href="/pagos">Formas de Pago</a></li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="fwidget">
+                                                                                                <h4>Accesos Directos</h4>
+                                                                                                <ul>
+                                                                                                    <li><a href="/reclamaciones">Libro de Reclamaciones</a></li>
+                                                                                                    <li><a href="/soporte">Soporte</a></li>
+                                                                                                    <li><a href="/legal">Contratos, normas y condiciones</a></li>
+                                                                                                    <li><a href="/medidor">Mide tu velocidad de conexi&oacute;n</a></li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-md-3">
+                                                                                            <div class="fwidget">
+
+                                                                                                <h4>Contacto</h4>
+                                                                                                <i class="icon-home"></i>Av. Manuel Olgu&iacute;n 335, Oficina 1405              <br/>
+                                                                                                <i class=""></i>Santiago de Surco                  <br />
+                                                                                                <i class="icon-phone"></i>729 0000<br>
+                                                                                                    Horario de atenci&oacute;n:<br>
+                                                                                                        De Lunes a Viernes de 9:00 a 18:00 horas
+                                                                                                        <i class="icon-envelope-alt"></i><a color="blue" href="mailto:contacto@voy.pe?subject=Voy%20contacto%20online">contacto@voy.pe<br></a>
+
+
+                                                                                                        <div class="social">
+                                                                                                            <a href="https://facebook.com/voyperu" class="bblue">
+                                                                                                                <i class="icon-facebook"></i>
+                                                                                                            </a>
+                                                                                                            <a href="https://twitter.com/voyperu" class="blightblue">
+                                                                                                                <i class="icon-twitter"></i>
+                                                                                                            </a>
+                                                                                                        </div>
+
+                                                                                                        </div>
+                                                                                                        </div>
+                                                                                                        </div>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-md-12">
+                                                                                                                <div class="copy">
+                                                                                                                    <p>Copyright &copy; <a href="http://moche.pe">Moche Inversiones S.A.</a></p>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="clearfix"></div>
+                                                                                                        </div>
+                                                                                                        </footer> 
+
+
+
+                                                                                                        <footer class="footer-wrap text-center">
+                                                                                                            <div class="container">
+                                                                                                                <ul class="social social-icons-footer-bottom ">
+                                                                                                                    <li class="facebook"><a href="https://www.facebook.com/voyperu" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                                                                                                    <li class="twitter"><a href="https://www.twitter.com/voyperu" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                                                                                                </ul>
+                                                                                                            </div>
+
+                                                                                                        </footer>
+
+                                                                                                        <!-- Scroll To Top --> 
+                                                                                                        <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>  
+
+                                                                                                        <!-- /Footer -->
+                                                                                                        <!-- Scroll To Top --> 
+                                                                                                        <a href="#" class="scrollup"><i class="fa fa-angle-up"></i></a>      
+
+
+
+                                                                                                        <!-- /What we do best -->
+
+
+                                                                                                        </div>
+                                                                                                        <!-- /Warpper -->
+                                                                                                        <!-- The Scripts -->
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.min.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery-migrate-1.0.0.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery-ui.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/bootstrap.min.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.parallax.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.hparallax.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.wait.js"></script> 
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/appear.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/fappear.js"></script>  
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/modernizr-2.6.2.min.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.bxslider.min.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.maximage.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.cycle.all.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.prettyPhoto.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.sticky.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.isotope.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/imagesloaded.pkgd.min.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.countTo.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/skrollr.min.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.scrollTo.min.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/wow.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.nav.js"></script>
+                                                                                                    <!--<script src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.gmap.min.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/jquery.mb.YTPlayer.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/tytabs.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/custom.js"></script>
+                                                                                                        <script src="<?php echo STATIC_URL ?>voy/js/select_dependiente.js"></script>
+                                                                                                        
+                                                                                                        
+  <script type="text/javascript">
+var LHCChatOptions = {};
+LHCChatOptions.opt = {widget_height:340,widget_width:300,popup_height:520,popup_width:500,domain:'voy.pe'};
+(function() {
+var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+var refferer = (document.referrer) ? encodeURIComponent(document.referrer.substr(document.referrer.indexOf('://')+1)) : '';
+var location  = (document.location) ? encodeURIComponent(window.location.href.substring(window.location.protocol.length)) : '';
+po.src = '//www.voy.pe/chat/index.php/esp/chat/getstatus/(click)/internal/(position)/bottom_right/(ma)/br/(top)/350/(units)/pixels/(leaveamessage)/true/(department)/2/(operator)/2?r='+refferer+'&l='+location;
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script>                                                                                                      
+                                                                                                        
+                                                                                                        
+                                                                                                        
+                                                                                                        
+                                                                                                        </body>
+                                                                                                        </html>

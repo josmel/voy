@@ -1,0 +1,35 @@
+
+<h3 class="admin-title"><?php echo $this->element->getView()->titulo?></h3>
+   <div class="alert alert-info">
+   <span style="color:red;"><?php $this->getMesseger();?></span>
+   </div>  
+<div class="frm-panel">
+    <form id="frm-article" action="<?php echo $this->element->getView()->action?>" 
+          method="post" Enctype="multipart/form-data">
+        <div class="control-group">
+            <label class="control-label" for="password">Contraseña Actual:</label>
+            <div class="controls">
+                <?php echo $this->element->password; ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="confirmone">Nueva Contraseña:</label>
+            <div class="controls">
+                <?php echo $this->element->confirmone; ?>
+                <?php echo $this->element->iduser; ?> 
+            </div>
+	</div>
+         <div class="control-group">
+            <label class="control-label" for="confirmtwo">Repita la Nueva Contraseña:</label>
+            <div class="controls">
+                <?php echo $this->element->confirmtwo; ?>
+            </div>
+	</div>
+
+	<div class="control-group last">
+            <div class="control">
+                <button class="btn-admin" type="submit">Cambiar</button>
+            </div>
+	</div>
+   </form>
+</div>

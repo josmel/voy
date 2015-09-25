@@ -1,0 +1,229 @@
+<section id="section6" class="pricing">
+    <div class="container">
+        <div class="row flat">
+            <!-- Title row -->
+            <div class="row">
+                <div class="col-md-12 big-title  ">
+                    <h2>Contratar</h2>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-md-12 sub-title text-center  ">
+                    <h3>Datos del plan y del usuario</h3>
+                </div>
+            </div>
+            <!-- /Title row -->
+            <?php $this->getMesseger(); ?>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+                <ul class="plan plan3" >
+                    <li class="plan-name">
+                        <?= $this->DetallePlan['nombre'] ?>
+                    </li>
+                    <li class="plan-price"><?= $this->DetallePlan['tarifaDescripcion'] ?>
+                    </li>
+                    <?php
+                    $descripcion = explode("|", $this->DetallePlan['descripcion']);
+                    foreach ($descripcion as $valor) {
+                        ?>
+                        <li><?= $valor ?></li>
+                    <?php } ?>
+                    <li>Válido hasta el <?= $this->fecha; ?>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact form -->
+            <div class="contact-form">
+                <!-- Form element row -->
+
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <form action="/contratar-telefonia" method="post" name="contratar">
+                        <fieldset>
+                            <div class="row">
+
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
+                                    <ul class="plan plan3" >
+                                        <li class="plan-name">
+                                            Plan <?= $this->DetallePlan['nombre'] ?> por S/. <?= $this->DetallePlan['tarifa'] ?> al mes
+                                        </li>
+                                        <li class="plan-price">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12  ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input  name="plan" type="hidden" value="<?=  $this->plan?>" >
+                                            <input class="form-control" id="name" name="nombre" type="text" placeholder="Nombres" value="" required><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12   ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input class="form-control" id="lastname" name="apellidoPaterno" type="text" placeholder="Apellido Paterno" value="" required><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12   ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input class="form-control" id="lastname" name="apellidoMaterno" type="text" placeholder="Apellido Materno" value="" required><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <select id="tipoDocumentoCodigo"  name="tipoDocumentoCodigo" class="form-control" required>
+                                                    <option value=''>Selecciona tipo Documento...</option> 
+                                                    <?php
+                                                    $ListarTiposDocumento = $this->ListarTiposDocumento;
+                                                    foreach ($ListarTiposDocumento as $indice => $registro) {
+                                                        echo "<option value='" . $registro['codigo'] . "'>" . $registro['descripcion'] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input class="form-control" id="document" name="documento" type="text" placeholder="DNI o CE" value="" required><br>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12  ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input class="form-control" id="address" name="direccion" type="text" placeholder="Dirección" value="" required><br>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12  ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label> Departamento</label>
+                                                <select id="departamento" onChange='cargaContenido(this.id)' name="departamento" class="form-control" required>
+                                                    <option value=''>Selecciona Opci&oacute;n...</option> 
+                                                    <?php
+                                                    $departamento = $this->ListarDepartamentos;
+                                                    foreach ($departamento as $indice => $registroDepartamento) {
+                                                        if ($registroDepartamento['departamento'] == 15) {
+                                                            echo "<option  selected='" . $registroDepartamento['departamento'] . "' value='" . $registroDepartamento['departamento'] . "'>" . $registroDepartamento['descripcion'] . "</option>";
+                                                        } else {
+                                                            echo "<option value='" . $registroDepartamento['departamento'] . "'>" . $registroDepartamento['descripcion'] . "</option>";
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12  ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label> Provincia</label>
+                                                <select  name="provincia" id="provincia" onChange='cargaContenido2(this.id,15)' class="form-control" required>
+                                                    <option value=''>Selecciona opci&oacute;n...</option>
+                                                    <?php
+                                                    $ListarProvincias = $this->ListarProvincias;
+                                                    foreach ($ListarProvincias as $indice => $registro) {
+                                                        if ($registro['provincia'] == 1) {
+                                                            echo "<option  selected='" . $registro['provincia'] . "' value='" . $registro['provincia'] . "'>" . $registro['descripcion'] . "</option>";
+                                                        } else {
+                                                            echo "<option value='" . $registro['provincia'] . "'>" . $registro['descripcion'] . "</option>";
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12  ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label> Distrito</label>
+                                                <select  name="distrito" id="distrito" class="form-control">
+                                                    <option value=''>Selecciona opci&oacute;n...</option>
+                                                    <?php
+                                                    $ListarDistritos = $this->ListarDistritos;
+                                                    foreach ($ListarDistritos as $indice => $registro) {
+                                                        if ($registro['distrito'] == 40) {
+                                                            echo "<option  selected='" . $registro['distrito'] . "' value='" . $registro['distrito'] . "'>" . $registro['descripcion'] . "</option>";
+                                                        } else {
+                                                            echo "<option value='" . $registro['distrito'] . "'>" . $registro['descripcion'] . "</option>";
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12  ">
+
+                                    <p style="font-style: bold;text-align: left;"><label>Sobre tu teléfono fijo:</label></p>
+
+                                    <p style="font-style: normal;text-align: left;"><input type="radio" name="telefonia" value="Asignar un nuevo número de teléfono" id="order_port_new"> Asignar un nuevo número de teléfono</p>
+                                    <p style="font-style: normal;text-align: left;"><input name="telefonia" type="radio" id="order_port_port" value="Quiero mantener mi número de forma gratuita" checked="CHECKED"> Quiero mantener mi número de forma gratuita</p>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6">
+                                            <input class="form-control" id="fixed" name="fijo" type="text" placeholder="Número fijo  actual" value="" required><br>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <input class="form-control" id="mobile" name="celular" type="text" placeholder="Número móvil" value="" required><br>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="email" id="email" name="correo" placeholder="Email" value="" required><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            Al hacer clic en el botón "Contratar" usted confirma que ha leído y acepta los <a href="http://www.voy.pe/docs/Voy_Contrato_rev12ago2014.pdf">Términos y Condiciones</a> del servicio, además confirma que su dirección se encuentra dentro del <a href="cobertura"> área de cobertura</a>. Moche Inversiones S.A. realizará una verificación de cobertura y de factibilidad técnica para brindar el servicio en su dirección, de ser aceptado nos comunicaremos con usted para programar la instalación del servicio.  Moche Inversiones S.A. se reserva el derecho de rechazar los contratos en los cuales no tenga factibilidad técnica.<br>&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <button type="submit" class="btn btn-2 btn-2c">Contratar</button>
+                                    <!--<div class="success alert-success alert" style="display:none">-->
+                                    <!--Su solicitud fue enviada con &eacute;xito.-->
+                                    <!--</div>-->
+                                    <div class="error alert-danger alert" style="display:none">
+                                        Debe completar todos los datos y su cuenta de E-mail debe ser v&aacute;lida.
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <!-- /Form element row -->
+            <!-- /Contact form -->
+        </div>
+    </div>
+</section>

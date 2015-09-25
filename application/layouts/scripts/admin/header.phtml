@@ -1,0 +1,20 @@
+<header>
+    <div class="fix">
+        <div class="box-center">
+            <div class="head-user">
+                <span></span>Hola, <?php echo $this->identity->login ?>
+            </div>
+            <ul class="head-options">
+                <li>
+                    <a title="Perfil" href="/admin/index/update-pass"><span ></span>Pass</a>
+                </li>
+                <li>
+                    <a title="Perfil" href="/admin/index/edit/id/<?php echo $this->identity->iduser ?>"><span class="ichd-perfil"></span>Perfil</a>
+                </li>
+                <li>
+                    <a title="Logout" href="/logout"><span class="ichd-logout"></span>Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
